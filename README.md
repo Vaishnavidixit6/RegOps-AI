@@ -1,18 +1,18 @@
-# ⚖️ RegShield: Multi-Agent Regulatory Intelligence & Auditing Platform
+# RegShield: Multi-Agent Regulatory Intelligence and Auditing Platform
 
-RegShield is an agentic compliance auditing platform that automates banking regulation reviews. It leverages a Google **Agent Development Kit (ADK)** multi-agent orchestrator and a custom **Model Context Protocol (MCP)** server to analyze regulatory changes (like RBI circulars), compare policy gaps, audit pending customer files, and flag compliance and fraud alerts.
+RegShield is an agentic compliance auditing platform that automates banking regulation reviews. It leverages a Google Agent Development Kit (ADK) multi-agent orchestrator and a custom Model Context Protocol (MCP) server to analyze regulatory changes (like RBI circulars), compare policy gaps, audit pending customer files, and flag compliance and fraud alerts.
 
-## 🚀 Key Features
+## Key Features
 
-*   **📢 RBI Circular impact Analysis (Task 1 & 3)**: Paste/upload new regulatory circular text to automatically extract effective dates, affected products, and changed clauses.
-*   **🔄 Version & Gap Compare (Task 2)**: Detect gaps between new circular guidelines and existing internal Standard Operating Procedures (SOPs).
-*   **📂 Loan File Review & Audit (Task 4)**: Audits active database loan files (e.g. `LAP-213`) to check compliance against rules like Video-KYC (V-CIP) onboarding.
-*   **🛡️ Active Fraud Shield**: Queries a fraud advisory database to flag files vulnerable to deepfakes, mock cameras, and GPS spoofing.
-*   **📥 Compliance Report Generator (Task 5)**: Downloads a signed markdown compliance audit report including recommendations.
+*   **RBI Circular Impact Analysis (Task 1 and 3)**: Paste/upload new regulatory circular text to automatically extract effective dates, affected products, and changed clauses.
+*   **Version and Gap Compare (Task 2)**: Detect gaps between new circular guidelines and existing internal Standard Operating Procedures (SOPs).
+*   **Loan File Review and Audit (Task 4)**: Audits active database loan files (e.g. `LAP-213`) to check compliance against rules like Video-KYC (V-CIP) onboarding.
+*   **Active Fraud Shield**: Queries a fraud advisory database to flag files vulnerable to deepfakes, mock cameras, and GPS spoofing.
+*   **Compliance Report Generator (Task 5)**: Downloads a signed markdown compliance audit report including recommendations.
 
 ---
 
-## 🛠️ Architecture
+## Architecture
 
 ```mermaid
 graph TD
@@ -35,7 +35,7 @@ graph TD
 
 ---
 
-## 💻 Tech Stack
+## Tech Stack
 
 1.  **Core Agent Orchestration**: Google Agent Development Kit (ADK)
 2.  **LLM Backend**: Gemini API (`gemini-2.0-flash`)
@@ -46,7 +46,7 @@ graph TD
 
 ---
 
-## 🏁 Quick Start & Setup
+## Quick Start and Setup
 
 ### 1. Installation
 Clone the repository:
@@ -72,7 +72,7 @@ Create a `.env` file in the root directory:
 GEMINI_API_KEY="your-gemini-api-key-here"
 ```
 
-### 3. Initialize & Seed Database
+### 3. Initialize and Seed Database
 Generate the mock database populated with 55 circulars, 55 SOPs, 55 fraud advisories, and 55 customer loan applications:
 ```bash
 uv run python init_db.py
@@ -94,7 +94,7 @@ Open **[http://localhost:8501](http://localhost:8501)** in your browser to run t
 
 ---
 
-## 🐳 Container Deployment & Cloud Deploy
+## Container Deployment and Cloud Deploy
 
 A production-ready [Dockerfile](file:///c:/Users/ds3/Kaggle_5DayAI/regulatory-agent/Dockerfile) is provided in the repository root.
 
