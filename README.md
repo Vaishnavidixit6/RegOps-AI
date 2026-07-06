@@ -91,3 +91,28 @@ uv run streamlit run streamlit_app.py --server.port 8501
 ```
 
 Open **[http://localhost:8501](http://localhost:8501)** in your browser to run the compliance dashboard!
+
+---
+
+## 🐳 Container Deployment & Cloud Deploy
+
+A production-ready [Dockerfile](file:///c:/Users/ds3/Kaggle_5DayAI/regulatory-agent/Dockerfile) is provided in the repository root.
+
+### Build and Run locally with Docker
+```bash
+# Build the image
+docker build -t regshield:latest .
+
+# Run the container (binding FastAPI on 8000 and Streamlit on 8501)
+docker run -p 8000:8000 -p 8501:8501 --env GEMINI_API_KEY="your-api-key" regshield:latest
+```
+
+### Deploying to GCP Vertex AI Agent Runtime
+The application is pre-configured to deploy directly to Google Cloud Platform's **Agent Runtime** or **Cloud Run**:
+```bash
+# Install GCP deployment scaffolding target
+agents-cli scaffold enhance . --deployment-target agent_runtime
+
+# Deploy the agent configuration
+agents-cli deploy
+```
