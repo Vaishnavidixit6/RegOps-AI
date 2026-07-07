@@ -1,4 +1,4 @@
-# RegShield: Multi-Agent Regulatory Intelligence and Auditing Platform
+# RegOps-AI: Multi-Agent Regulatory Intelligence and Auditing Platform
 
 RegShield is an agentic compliance auditing platform that automates banking regulation reviews. It leverages a Google Agent Development Kit (ADK) multi-agent orchestrator and a custom Model Context Protocol (MCP) server to analyze regulatory changes (like RBI circulars), compare policy gaps, audit pending customer files, and flag compliance and fraud alerts.
 
