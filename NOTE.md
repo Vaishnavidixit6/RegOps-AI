@@ -98,12 +98,14 @@ Our custom Stdio Model Context Protocol (MCP) server exposes the bank database u
 
 ---
 
-### 7. Database
-We utilize a local SQLite database (`bank_knowledge.db`) pre-populated with **55+ records per catalog table** to verify volume scalability:
-*   **rbi_circulars**: Stores circular numbers, titles, issue dates, effective dates, products affected, and regulatory contents.
-*   **internal_sops**: Houses bank SOP codes, product types, and step-by-step operating guidelines.
-*   **fraud_advisories**: Stores threat levels, advisory codes, and attack pattern descriptions (e.g. virtual camera deepfakes).
-*   **loan_applications**: Stores customer names, status, product types, requested amounts, and detailed verification/KYC logs.
+### 7. Database Schema
+
+| Table | Description |
+| :--- | :--- |
+| **Circulars** | RBI regulations |
+| **SOPs** | Internal policies |
+| **Loan Applications** | Pending cases |
+| **Fraud Advisories** | Security alerts |
 
 ---
 
