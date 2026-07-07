@@ -154,22 +154,23 @@ with tab1:
         st.write("---")
         
         # Placeholders for streaming sub-agents log
-        st.markdown('<span class="task-badge">Task 3: Analyze Impact</span>', unsafe_allow_html=True)
+        st.markdown('<span class="task-badge">Task 1 and 3: RBI Circular Impact Analysis</span>', unsafe_allow_html=True)
         st.subheader("🕵️ Sub-Agent Live Impact Analysis")
         circular_analysis_container = st.empty()
         
-        st.markdown('<span class="task-badge">Task 2: Compare Policy Versions & Gaps</span>', unsafe_allow_html=True)
+        st.markdown('<span class="task-badge">Task 2: Version and Gap Compare</span>', unsafe_allow_html=True)
         st.subheader("🔄 Policy Gaps & Version Differences")
         policy_diff_container = st.empty()
         
-        st.markdown('<span class="task-badge">Task 4: Review Affected Applications</span>', unsafe_allow_html=True)
+        st.markdown('<span class="task-badge">Task 4: Loan File Review and Audit</span>', unsafe_allow_html=True)
         st.subheader("📂 Branch File Review")
         cases_container = st.empty()
         
+        st.markdown('<span class="task-badge">Active Fraud Shield</span>', unsafe_allow_html=True)
         st.subheader("🔍 Supporting Fraud & Threat Evidence")
         evidence_container = st.empty()
         
-        st.markdown('<span class="task-badge">Task 5: Generate Compliance Report & Recommendations</span>', unsafe_allow_html=True)
+        st.markdown('<span class="task-badge">Task 5: Compliance Report Generator</span>', unsafe_allow_html=True)
         st.subheader("📄 Unified Compliance Audit Report")
         recommendation_container = st.empty()
         
@@ -266,7 +267,7 @@ with tab1:
 # TAB 2: Loan Application Checker (Officer Flow)
 # ----------------------------------------------------
 with tab2:
-    st.markdown('<span class="task-badge">Task 4: Review an Application</span>', unsafe_allow_html=True)
+    st.markdown('<span class="task-badge">Task 4: Loan File Review and Audit</span>', unsafe_allow_html=True)
     st.subheader("📋 Audit Loan Application File")
     st.write("Select a pending customer loan application from the database to inspect details and query governing circulars:")
     
@@ -315,10 +316,22 @@ with tab2:
             st.success(f"Connected successfully! (Session ID: {session_id})")
             
             st.write("---")
-            st.markdown('<span class="task-badge">Task 2 & 5: Compare versions & Generate compliance report</span>', unsafe_allow_html=True)
-            st.subheader("🕵️ Sub-Agent Application Audit Report")
             
-            app_audit_container = st.empty()
+            # Decoupled Sub-Agent Output Containers for Tab 2
+            st.markdown('<span class="task-badge">Task 1 and 3: RBI Circular Impact Analysis</span>', unsafe_allow_html=True)
+            app_circular_container = st.empty()
+            
+            st.markdown('<span class="task-badge">Task 2: Version and Gap Compare</span>', unsafe_allow_html=True)
+            app_policy_container = st.empty()
+            
+            st.markdown('<span class="task-badge">Task 4: Loan File Review and Audit</span>', unsafe_allow_html=True)
+            app_loan_container = st.empty()
+            
+            st.markdown('<span class="task-badge">Active Fraud Shield</span>', unsafe_allow_html=True)
+            app_fraud_container = st.empty()
+            
+            st.markdown('<span class="task-badge">Task 5: Compliance Report Generator</span>', unsafe_allow_html=True)
+            app_rec_container = st.empty()
             
             # Direct prompt asking the agent to search matching circulars and provide compliance advice
             app_prompt = (
@@ -342,7 +355,7 @@ with tab2:
                 },
             }
             
-            collected_response = ""
+            collected_responses = {}
             
             try:
                 response = requests.post(f"{server_url}/run_sse", json=payload, stream=True, timeout=120)
@@ -359,21 +372,59 @@ with tab2:
                     except json.JSONDecodeError:
                         continue
                         
+                    author = event.get("author")
                     content = event.get("content")
                     if content and isinstance(content, dict):
                         parts = content.get("parts", [])
                         for part in parts:
                             if "text" in part and part["text"].strip():
-                                collected_response += part["text"]
-                                app_audit_container.markdown(collected_response)
+                                txt = part["text"]
                                 
+                                if author == "circular_analysis_agent":
+                                    if "app_circular" not in collected_responses:
+                                        collected_responses["app_circular"] = ""
+                                    collected_responses["app_circular"] += txt
+                                    app_circular_container.info(f"**Circular Analysis Agent**\n\n{collected_responses['app_circular']}")
+                                    
+                                elif author == "policy_diff_agent":
+                                    if "app_policy" not in collected_responses:
+                                        collected_responses["app_policy"] = ""
+                                    collected_responses["app_policy"] += txt
+                                    app_policy_container.success(f"**Policy Diff Agent**\n\n{collected_responses['app_policy']}")
+                                    
+                                elif author == "impacted_cases_agent":
+                                    if "app_loan" not in collected_responses:
+                                        collected_responses["app_loan"] = ""
+                                    collected_responses["app_loan"] += txt
+                                    app_loan_container.warning(f"**Impacted Cases Agent**\n\n{collected_responses['app_loan']}")
+                                    
+                                elif author == "evidence_supporting_agent":
+                                    if "app_fraud" not in collected_responses:
+                                        collected_responses["app_fraud"] = ""
+                                    collected_responses["app_fraud"] += txt
+                                    app_fraud_container.error(f"**Evidence Supporting Agent**\n\n{collected_responses['app_fraud']}")
+                                    
+                                elif author == "recommendation_agent" or author == "regulatory_intelligence_coordinator":
+                                    if "app_rec" not in collected_responses:
+                                        collected_responses["app_rec"] = ""
+                                    collected_responses["app_rec"] += txt
+                                    app_rec_container.markdown(f"{collected_responses['app_rec']}")
+                                    
                 st.balloons()
                 st.success("Application compliance reference audit finished successfully!")
                 
                 # Compliance Report Downloader (Task 5)
+                final_app_report = (
+                    f"# APPLICATION COMPLIANCE REPORT ({selected_app_id})\n\n"
+                    f"### APPLICABLE RBI CIRCULARS:\n{collected_responses.get('app_circular', 'N/A')}\n\n"
+                    f"### INTERNAL POLICY GAP AUDIT:\n{collected_responses.get('app_policy', 'N/A')}\n\n"
+                    f"### CASE FILE COMPLIANCE CHECK:\n{collected_responses.get('app_loan', 'N/A')}\n\n"
+                    f"### ACTIVE FRAUD WARNINGS:\n{collected_responses.get('app_fraud', 'N/A')}\n\n"
+                    f"### AUDITOR CHECKLIST & DISCLAIMERS:\n{collected_responses.get('app_rec', 'N/A')}"
+                )
                 st.download_button(
                     label=f"📥 Download Application Compliance Report ({selected_app_id})",
-                    data=collected_response,
+                    data=final_app_report,
                     file_name=f"compliance_report_{selected_app_id}.md",
                     mime="text/markdown"
                 )
