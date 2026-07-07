@@ -1,4 +1,4 @@
-# RegShield AI
+# RegOps AI
 ## An Agentic Regulatory Intelligence Platform for Banking Compliance
 
 ---
@@ -21,12 +21,12 @@ The challenge is not a lack of competence among bank officers; rather, the volum
 ### 2. Why Agents?
 A single LLM acting as a chatbot cannot efficiently coordinate document comparison, policy retrieval, database analysis, evidence gathering, and recommendation generation. Doing so results in context bloat, hallucinated database queries, and a lack of modular audit trails. 
 
-RegShield AI (RegOps AI) uses specialized AI agents that collaborate to complete an end-to-end compliance workflow. By separating concerns, each agent operates with distinct instructions, access boundaries, and tools. This multi-agent coordination makes the system highly precise, explainable, and capable of sequential problem-solving.
+RegOps AI uses specialized AI agents that collaborate to complete an end-to-end compliance workflow. By separating concerns, each agent operates with distinct instructions, access boundaries, and tools. This multi-agent coordination makes the system highly precise, explainable, and capable of sequential problem-solving.
 
 ---
 
 ### 3. Solution
-RegShield AI is an intelligent regulatory platform that streamlines the compliance lifecycle:
+RegOps AI is an intelligent regulatory platform that streamlines the compliance lifecycle:
 
 ```
 Upload Circular
@@ -155,4 +155,4 @@ The application is fully containerized and Docker-ready:
 ---
 
 ### 13. Conclusion
-RegShield AI demonstrates how agentic AI can transform regulatory compliance from a manual, reactive process into an intelligent, proactive workflow. While demonstrated using banking regulations, the same architecture can be extended to any regulated industry where policies change frequently and operational accuracy is critical.
+RegOps AI demonstrates how agentic AI can transform regulatory compliance from a manual, reactive process into an intelligent, proactive workflow. While demonstrated using banking regulations, the same architecture can be extended to any regulated industry where policies change frequently and operational accuracy is critical.
