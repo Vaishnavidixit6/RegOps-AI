@@ -124,7 +124,6 @@ server_url = "http://127.0.0.1:8000"
 # TAB 1: RBI Circular Impact Analyzer
 # ----------------------------------------------------
 with tab1:
-    st.markdown('<span class="task-badge">Task 1: Upload / Input New Circular</span>', unsafe_allow_html=True)
     st.subheader("📝 Input New RBI Circular Text")
     
     CIP_TEXT_NEW = """Effective July 1, 2026, the RBI amends the KYC directions to mandate that all non-face-to-face onboarding for individuals and sole proprietorships must be completed utilizing the Video-based Customer Identification Process (V-CIP). Physical document verification is replaced by digital e-KYC or e-PAN database checks. V-CIP sessions must be recorded live, require real-time geographical geotagging to ensure the customer is inside India, and integrate AI facial matching with liveness checks. Any digital account opened without a compliant V-CIP session must be frozen within 7 days of opening."""
@@ -154,23 +153,18 @@ with tab1:
         st.write("---")
         
         # Placeholders for streaming sub-agents log
-        st.markdown('<span class="task-badge">Task 1 and 3: RBI Circular Impact Analysis</span>', unsafe_allow_html=True)
         st.subheader("🕵️ Sub-Agent Live Impact Analysis")
         circular_analysis_container = st.empty()
         
-        st.markdown('<span class="task-badge">Task 2: Version and Gap Compare</span>', unsafe_allow_html=True)
         st.subheader("🔄 Policy Gaps & Version Differences")
         policy_diff_container = st.empty()
         
-        st.markdown('<span class="task-badge">Task 4: Loan File Review and Audit</span>', unsafe_allow_html=True)
         st.subheader("📂 Branch File Review")
         cases_container = st.empty()
         
-        st.markdown('<span class="task-badge">Active Fraud Shield</span>', unsafe_allow_html=True)
         st.subheader("🔍 Supporting Fraud & Threat Evidence")
         evidence_container = st.empty()
         
-        st.markdown('<span class="task-badge">Task 5: Compliance Report Generator</span>', unsafe_allow_html=True)
         st.subheader("📄 Unified Compliance Audit Report")
         recommendation_container = st.empty()
         
@@ -267,7 +261,6 @@ with tab1:
 # TAB 2: Loan Application Checker (Officer Flow)
 # ----------------------------------------------------
 with tab2:
-    st.markdown('<span class="task-badge">Task 4: Loan File Review and Audit</span>', unsafe_allow_html=True)
     st.subheader("📋 Audit Loan Application File")
     st.write("Select a pending customer loan application from the database to inspect details and query governing circulars:")
     
@@ -318,19 +311,19 @@ with tab2:
             st.write("---")
             
             # Decoupled Sub-Agent Output Containers for Tab 2
-            st.markdown('<span class="task-badge">Task 1 and 3: RBI Circular Impact Analysis</span>', unsafe_allow_html=True)
+            st.subheader("🕵️ RBI Circular Impact Analysis")
             app_circular_container = st.empty()
             
-            st.markdown('<span class="task-badge">Task 2: Version and Gap Compare</span>', unsafe_allow_html=True)
+            st.subheader("🔄 Version and Gap Compare")
             app_policy_container = st.empty()
             
-            st.markdown('<span class="task-badge">Task 4: Loan File Review and Audit</span>', unsafe_allow_html=True)
+            st.subheader("📋 Loan File Review and Audit")
             app_loan_container = st.empty()
             
-            st.markdown('<span class="task-badge">Active Fraud Shield</span>', unsafe_allow_html=True)
+            st.subheader("🛡️ Active Fraud Shield")
             app_fraud_container = st.empty()
             
-            st.markdown('<span class="task-badge">Task 5: Compliance Report Generator</span>', unsafe_allow_html=True)
+            st.subheader("📄 Compliance Report Generator")
             app_rec_container = st.empty()
             
             # Direct prompt asking the agent to search matching circulars and provide compliance advice
