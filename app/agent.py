@@ -34,7 +34,7 @@ bank_knowledge_tools = McpToolset(
 circular_analysis_agent = Agent(
     name="circular_analysis_agent",
     model=Gemini(
-        model="gemini-2.0-flash",
+        model="gemini-2.0-flash-lite",
         retry_options=types.HttpRetryOptions(attempts=3),
     ),
     instruction=(
@@ -48,7 +48,7 @@ circular_analysis_agent = Agent(
 policy_diff_agent = Agent(
     name="policy_diff_agent",
     model=Gemini(
-        model="gemini-2.0-flash",
+        model="gemini-2.0-flash-lite",
         retry_options=types.HttpRetryOptions(attempts=3),
     ),
     instruction=(
@@ -63,7 +63,7 @@ policy_diff_agent = Agent(
 impacted_cases_agent = Agent(
     name="impacted_cases_agent",
     model=Gemini(
-        model="gemini-2.0-flash",
+        model="gemini-2.0-flash-lite",
         retry_options=types.HttpRetryOptions(attempts=3),
     ),
     instruction=(
@@ -82,7 +82,7 @@ impacted_cases_agent = Agent(
 evidence_supporting_agent = Agent(
     name="evidence_supporting_agent",
     model=Gemini(
-        model="gemini-2.0-flash",
+        model="gemini-2.0-flash-lite",
         retry_options=types.HttpRetryOptions(attempts=3),
     ),
     instruction=(
@@ -97,7 +97,7 @@ evidence_supporting_agent = Agent(
 recommendation_agent = Agent(
     name="recommendation_agent",
     model=Gemini(
-        model="gemini-2.0-flash",
+        model="gemini-2.0-flash-lite",
         retry_options=types.HttpRetryOptions(attempts=3),
     ),
     instruction=(
@@ -111,7 +111,7 @@ recommendation_agent = Agent(
 root_agent = Agent(
     name="regulatory_intelligence_coordinator",
     model=Gemini(
-        model="gemini-2.0-flash",
+        model="gemini-2.0-flash-lite",
         retry_options=types.HttpRetryOptions(attempts=3),
     ),
     instruction=(
